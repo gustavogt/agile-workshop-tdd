@@ -90,4 +90,35 @@ public class SalaryCalculatorTest {
 	private double comSalarioBase(double salario) {
 		return salario;
 	}
+	
+	@Test
+	public void deveRetornar1000MenosImpostosDe15PorCentoSeGerenteGanhaMenosDe5000() {
+		double salarioBase = 1000.0;
+		Employee manager = umFuncionario(Position.PROJECT_MANAGER, comSalarioBase(salarioBase));
+		
+		double salario = calculator.calculate(manager);
+		
+		assertEquals(salarioBase * 0.85, salario, 0.000001);
+	}
+	
+	@Test
+	public void deveRetornar5000MenosImpostosDe20PorCentoSeGerenteGanha5000OuMais() {
+		double salarioBase = 5000.0;
+		Employee manager = umFuncionario(Position.PROJECT_MANAGER, comSalarioBase(salarioBase));
+		
+		double salario = calculator.calculate(manager);
+		
+		assertEquals(salarioBase * 0.80, salario, 0.000001);
+	}
+	
+	@Test
+	public void deveRetornar6000MenosImpostosDe20PorCentoSeGerenteGanha5000OuMais() {
+		double salarioBase = 6000.0;
+		Employee manager = umFuncionario(Position.PROJECT_MANAGER, comSalarioBase(salarioBase));
+		
+		double salario = calculator.calculate(manager);
+		
+		assertEquals(salarioBase * 0.80, salario, 0.000001);
+	}
+	
 }
